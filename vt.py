@@ -1,14 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 # TODO:
-# - git
 # - Add functions: Domains, ips, comments, files
 # - Add http to url if needed
 # - Check url
 # - json parser
 # - use database
-# DONE:
-# - import apikey from file
 
 
 import os
