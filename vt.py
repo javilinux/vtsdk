@@ -5,6 +5,7 @@
 import os
 import requests
 import json
+import socket
 from pygments import highlight
 from pygments.lexers.data import JsonLexer
 from pygments.formatters.terminal import TerminalFormatter
@@ -19,6 +20,7 @@ def menu():
     print ("Choose an option")
     print ("\t1 - url report")
     print ("\t2 - domain report")
+    print ("\t3 - ip address report")
     print ("\t9 - salir")
         
     # Requesting an option
@@ -32,6 +34,11 @@ def menu():
         print ("")
         resource = raw_input("Choose domain:")
         domainReport(resource)
+    elif (optionMenu=="3"):
+        print ("")
+        resource = raw_input("Choose IP:")
+        ipChecker(resource)
+        ipReport(resource)
     elif (optionMenu=="9"):
         print ("Pressed 9...\nExiting\n")
         exit()
@@ -65,7 +72,6 @@ def urlReport(resource):
 def domainReport(resource):
     """
     Function to get an url report
-    Since we use scan=1 will automatically submit the URL for analysis if no report is found for it in VirusTotal's database.
     """
     url = 'https://www.virustotal.com/vtapi/v2/domain/report'
     params = {'apikey': myapikey, 'domain':resource }
@@ -73,6 +79,28 @@ def domainReport(resource):
     responseParser(response)
     raw_input("Press any key to continue")
     menu()
+
+def ipReport(resource):
+    """
+    Function to get an ip address report
+    """
+    url = 'https://www.virustotal.com/vtapi/v2/ip-address/report'
+    params = {'apikey': myapikey, 'ip':resource }
+    response = requests.request('GET', url , params=params )
+    responseParser(response)
+    raw_input("Press any key to continue")
+    menu()
+
+def ipChecker(resource):
+    """
+    Function to validate ipv4 -addresses
+    """
+    try:
+        socket.inet_aton(resource)
+    except socket.error:
+        print "not ipv4 address"
+        raw_input("Press any key to continue")
+        menu()
 
 if __name__== "__main__":
   menu()
