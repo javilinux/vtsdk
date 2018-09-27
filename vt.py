@@ -35,14 +35,7 @@ def menu():
             raw_input("No correct option selected...\npress any key to continue.")
             menu()
 
-def urlReport(resource):
-    """
-    Function to get an url report
-    Since we use scan=1 will automatically submit the URL for analysis if no report is found for it in VirusTotal's database.
-    """
-    url = 'https://www.virustotal.com/vtapi/v2/url/report'
-    params = {'apikey': myapikey, 'resource':resource , 'allinfo':True, 'scan':'1'}
-    response = requests.request('POST', url , params=params )
+def responseParser(response):
     if response.status_code != 200 :
         print("Failed")
         print(response.headers)
@@ -51,6 +44,16 @@ def urlReport(resource):
     else:
         json_str = json.dumps(response.json(), indent=2)
         print(highlight(json_str, JsonLexer(), TerminalFormatter()))
+
+def urlReport(resource):
+    """
+    Function to get an url report
+    Since we use scan=1 will automatically submit the URL for analysis if no report is found for it in VirusTotal's database.
+    """
+    url = 'https://www.virustotal.com/vtapi/v2/url/report'
+    params = {'apikey': myapikey, 'resource':resource , 'allinfo':True, 'scan':'1'}
+    response = requests.request('POST', url , params=params )
+    responseParser(response)
     raw_input("Press any key to continue")
     menu()
 
