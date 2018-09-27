@@ -1,14 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 # 
-# TODO:
-# - Move TODO to github issues
-# - Add functions: Domains, ips, comments, files
-# - Add http to url if needed
-# - Check url
-# - json parser
-# - use database
-
 
 import os
 import requests
