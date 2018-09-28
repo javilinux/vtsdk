@@ -162,7 +162,7 @@ def fileRescan(resource):
     """
     url = 'https://www.virustotal.com/vtapi/v2/file/rescan'
     params = {'apikey': myapikey, 'resource':resource}
-    response = requests.request('GET', url , params=params )
+    response = requests.request('POST', url , params=params )
     responseParser(response)
     raw_input("Press any key to continue")
     menu()
