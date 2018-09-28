@@ -21,6 +21,7 @@ def menu():
     print ("\t1 - url report")
     print ("\t2 - domain report")
     print ("\t3 - ip address report")
+    print ("\t4 - Get comments")
     print ("\t9 - salir")
         
     # Requesting an option
@@ -39,6 +40,10 @@ def menu():
         resource = raw_input("Choose IP:")
         ipChecker(resource)
         ipReport(resource)
+    elif (optionMenu=="4"):
+        print ("")
+        resource = raw_input("Enter md5/sha1/sha256 hash of the file or the URL itself you want to retrieve.")
+        getComments(resource)
     elif (optionMenu=="9"):
         print ("Pressed 9...\nExiting\n")
         exit()
@@ -101,6 +106,17 @@ def ipChecker(resource):
         print "not ipv4 address"
         raw_input("Press any key to continue")
         menu()
+
+def getComments(resource):
+    """
+    Function to get comments from a resource
+    """
+    url = 'https://www.virustotal.com/vtapi/v2/comments/get'
+    params = {'apikey': myapikey, 'resource':resource }
+    response = requests.request('GET', url , params=params )
+    responseParser(response)
+    raw_input("Press any key to continue")
+    menu()
 
 if __name__== "__main__":
   menu()
