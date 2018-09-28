@@ -24,6 +24,7 @@ def menu():
     print ("\t4 - Get comments")
     print ("\t5 - Put comment")
     print ("\t6 - File report")
+    print ("\t7 - File rescan")
     print ("\t9 - salir")
         
     # Requesting an option
@@ -55,6 +56,10 @@ def menu():
         print ("")
         resource = raw_input("Enter md5/sha1/sha256 hash of the file you want to get the report: ")
         fileReport(resource)
+    elif (optionMenu=="7"):
+        print ("")
+        resource = raw_input("Enter md5/sha1/sha256 hash of the file you want to get rescanned: ")
+        fileRescan(resource)
     elif (optionMenu=="9"):
         print ("Pressed 9...\nExiting\n")
         exit()
@@ -145,6 +150,17 @@ def fileReport(resource):
     Function to get report of a file
     """
     url = 'https://www.virustotal.com/vtapi/v2/file/report'
+    params = {'apikey': myapikey, 'resource':resource}
+    response = requests.request('GET', url , params=params )
+    responseParser(response)
+    raw_input("Press any key to continue")
+    menu()
+
+def fileRescan(resource):
+    """
+    Function to get a file Rescanned
+    """
+    url = 'https://www.virustotal.com/vtapi/v2/file/rescan'
     params = {'apikey': myapikey, 'resource':resource}
     response = requests.request('GET', url , params=params )
     responseParser(response)
