@@ -6,6 +6,7 @@ import os
 import requests
 import json
 import socket
+import Tkinter,tkFileDialog
 from pygments import highlight
 from pygments.lexers.data import JsonLexer
 from pygments.formatters.terminal import TerminalFormatter
@@ -25,6 +26,7 @@ def menu():
     print ("\t5 - Put comment")
     print ("\t6 - File report")
     print ("\t7 - File rescan")
+    print ("\t8 - File scan")
     print ("\t9 - salir")
         
     # Requesting an option
@@ -60,6 +62,11 @@ def menu():
         print ("")
         resource = raw_input("Enter md5/sha1/sha256 hash of the file you want to get rescanned: ")
         fileRescan(resource)
+    elif (optionMenu=="8"):
+        root = Tkinter.Tk()
+        root.withdraw()
+        filename = tkFileDialog.askopenfilename(parent=root,title='Choose a file')
+        fileScan(filename)
     elif (optionMenu=="9"):
         print ("Pressed 9...\nExiting\n")
         exit()
@@ -163,6 +170,18 @@ def fileRescan(resource):
     url = 'https://www.virustotal.com/vtapi/v2/file/rescan'
     params = {'apikey': myapikey, 'resource':resource}
     response = requests.request('POST', url , params=params )
+    responseParser(response)
+    raw_input("Press any key to continue")
+    menu()
+
+def fileScan(resource):
+    """
+    Function to get a Scan a file
+    """
+    url = 'https://www.virustotal.com/vtapi/v2/file/scan'
+    files = {'file': (resource, open(resource, 'rb'))}
+    params = {'apikey': myapikey}
+    response = requests.request('POST', url , files=files, params=params )
     responseParser(response)
     raw_input("Press any key to continue")
     menu()
