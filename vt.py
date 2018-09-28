@@ -22,6 +22,7 @@ def menu():
     print ("\t2 - domain report")
     print ("\t3 - ip address report")
     print ("\t4 - Get comments")
+    print ("\t5 - Put comment")
     print ("\t9 - salir")
         
     # Requesting an option
@@ -42,8 +43,14 @@ def menu():
         ipReport(resource)
     elif (optionMenu=="4"):
         print ("")
-        resource = raw_input("Enter md5/sha1/sha256 hash of the file or the URL itself you want to retrieve.")
+        resource = raw_input("Enter md5/sha1/sha256 hash of the file or the URL itself you want to retrieve comments from: ")
         getComments(resource)
+    elif (optionMenu=="5"):
+        print ("")
+        resource = raw_input("Enter md5/sha1/sha256 hash of the file or the URL itself you want to put a comment on: ")
+        comment = raw_input("Enter comment to add: ")
+        putComment(resource,comment)
+    
     elif (optionMenu=="9"):
         print ("Pressed 9...\nExiting\n")
         exit()
@@ -114,6 +121,17 @@ def getComments(resource):
     url = 'https://www.virustotal.com/vtapi/v2/comments/get'
     params = {'apikey': myapikey, 'resource':resource }
     response = requests.request('GET', url , params=params )
+    responseParser(response)
+    raw_input("Press any key to continue")
+    menu()
+
+def putComment(resource,comment):
+    """
+    Function to put a comments to a resource
+    """
+    url = 'https://www.virustotal.com/vtapi/v2/comments/put'
+    params = {'apikey': myapikey, 'resource':resource, 'comment':comment }
+    response = requests.request('POST', url , params=params )
     responseParser(response)
     raw_input("Press any key to continue")
     menu()
