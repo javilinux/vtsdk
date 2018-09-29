@@ -42,5 +42,5 @@ optional arguments:
 
 For instance:
 ```
-python vt.py -c url_report -r www.virustottal.com
+python vt.py -c url_report -r www.virustotal.com
 ```
