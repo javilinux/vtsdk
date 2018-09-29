@@ -25,6 +25,8 @@ python-requests
 python vt.py
 ```
 
+[![asciicast](https://asciinema.org/a/Yd8ej63FO4Yd05UofjBI1czep.png)](https://asciinema.org/a/Yd8ej63FO4Yd05UofjBI1czep)
+
 2. Using command line arguments:
 ```
 usage: vt.py [-h] -r RESOURCE [-m COMMENT] -c
