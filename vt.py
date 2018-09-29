@@ -7,6 +7,8 @@ import requests
 import json
 import socket
 import Tkinter,tkFileDialog
+import argparse
+import sys
 from pygments import highlight
 from pygments.lexers.data import JsonLexer
 from pygments.formatters.terminal import TerminalFormatter
@@ -187,4 +189,29 @@ def fileScan(resource):
     menu()
 
 if __name__== "__main__":
-  menu()
+    if (len(sys.argv) > 1):
+        parser = argparse.ArgumentParser()
+        parser.add_argument("-r", "--resource", required=True, help="md5/sha1/sha256 hash of the file")
+        parser.add_argument("-m", "--comment", required=False, help="Comment")
+        parser.add_argument("-c", "--command", required=True, 
+            choices=['file_report','file_scan','file_rescan','url_report','ip_report','domain_report','put_comment'], help="command")
+        args = parser.parse_args()
+        if args.command == 'file_report' :
+            fileReport(args.resource)
+        elif args.command == 'file_scan' :
+            fileScan(args.resource)
+        elif args.command == 'file_rescan' :
+            fileRescan(args.resource)
+        elif args.command == 'url_report' :
+            urlReport(args.resource)
+        elif args.command == 'ip_report' :
+            ipReport(args.resource)
+        elif args.command == 'domain_report' :
+            domainReport(args.resource)
+        elif args.command == 'put_comment' :
+            if (not hasattr(args,'comment')):
+                print("-m , --comment <comment> argument required")
+                exit()
+            putComment(args.resource,args.comment)
+        exit()
+    menu()
