@@ -9,6 +9,7 @@ import socket
 import Tkinter,tkFileDialog
 import argparse
 import sys
+import hashlib
 from pygments import highlight
 from pygments.lexers.data import JsonLexer
 from pygments.formatters.terminal import TerminalFormatter
@@ -178,10 +179,25 @@ def fileRescan(resource):
 
 def fileScan(resource):
     """
-    Function to get a Scan a file
+    Function to get a Scan a file.
+    First check if the file exists already on Virustotal, if so it ask for rescan or get the report, if not it is scanned.
     """
+    f = open(resource,"rb")
+    files = {'file': (resource, f)}
+    bytes = f.read() # read entire file as bytes
+    sha256_hash = hashlib.sha256(bytes).hexdigest()
+    params = {'apikey': myapikey, 'resource':sha256_hash}
+    response = requests.request('GET', 'https://www.virustotal.com/vtapi/v2/file/report' , params=params )
+    if ((response.json()["response_code"]) == 1 ):
+        print("File already present on virustotal")
+        option = raw_input("Press 1 to rescan, 2 to get the report\t")
+        if option == "1":
+            fileRescan(sha256_hash)
+        elif option == "2":
+            fileReport(sha256_hash)
+        else:
+            menu()
     url = 'https://www.virustotal.com/vtapi/v2/file/scan'
-    files = {'file': (resource, open(resource, 'rb'))}
     params = {'apikey': myapikey}
     response = requests.request('POST', url , files=files, params=params )
     responseParser(response)
