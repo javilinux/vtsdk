@@ -24,7 +24,8 @@ python-requests
 - There are two options:
 1. Interactive: you just run the sdk with:
 ```
-python vt.py
+chmod +x vt.py
+./vt.py
 ```
 
 [![asciicast](https://asciinema.org/a/Yd8ej63FO4Yd05UofjBI1czep.png)](https://asciinema.org/a/Yd8ej63FO4Yd05UofjBI1czep)
@@ -46,5 +47,5 @@ optional arguments:
 
 For instance:
 ```
-python vt.py -c url_report -r www.virustotal.com
+./vt.py -c url_report -r www.virustotal.com
 ```
