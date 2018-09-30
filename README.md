@@ -4,6 +4,10 @@ Virus Total API SDK in Python
 ### API Key
 - For the apikey you just have to [register](https://www.virustotal.com/en/#signup) in VirusTotal Community (top right hand side of VirusTotal). Once registered, sign in into your account and you will find your public API in the corresponding menu item under your user name.
 
+### Installation
+
+Clone the repo or just get the vt.py script
+
 ### Configuration
 - Put your key inside a file called *apikey.txt* in the same directory.
 
@@ -11,10 +15,8 @@ Virus Total API SDK in Python
 
 The following packages need to be installed in fedora:
 ```
-python2-tkinter
-python3-tkinter
-python2-pygments
-python3-pygments
+python-tkinter
+python-pygments
 python-requests
 ```
 
