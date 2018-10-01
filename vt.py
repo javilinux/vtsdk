@@ -183,7 +183,6 @@ def fileScan(resource):
     First check if the file exists already on Virustotal, if so it ask for rescan or get the report, if not it is scanned.
     """
     f = open(resource,"rb")
-    files = {'file': (resource, f)}
     bytes = f.read() # read entire file as bytes
     sha256_hash = hashlib.sha256(bytes).hexdigest()
     params = {'apikey': myapikey, 'resource':sha256_hash}
@@ -199,6 +198,7 @@ def fileScan(resource):
             menu()
     url = 'https://www.virustotal.com/vtapi/v2/file/scan'
     params = {'apikey': myapikey}
+    files = {'file': (resource, f)}
     response = requests.request('POST', url , files=files, params=params )
     responseParser(response)
     raw_input("Press any key to continue")
