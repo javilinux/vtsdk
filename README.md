@@ -11,6 +11,8 @@
     - [vt.sh](#vtsh)
         - [Prerrequisites](#prerrequisites-1)
         - [Usage](#usage-1)
+    - [httpie](#httpie)
+        - [Prerrequisites](#prerrequisites-2)
 
 <!-- /TOC -->
 
@@ -93,4 +95,51 @@ And for putcomments you have to add an extra argument
 For instance:
 ```
 ./vt.sh ipaddressreport 8.8.8.8
+```
+
+## httpie
+
+List of examples using [httpie](https://httpie.org/)
+
+### Prerrequisites
+
+Set an environment variable with your APIKEY, for instance:
+
+```
+VT_API_KEY=`cat apikey.txt`
+```
+
+*file_report*
+```
+http GET https://www.virustotal.com/vtapi/v2/file/report apikey==${VT_API_KEY} resource==8ebc97e05c8e1073bda2efb6f4d00ad7e789260afa2c276f0c72740b838a0a93
+```
+
+*file_scan*
+```
+http -f POST https://www.virustotal.com/vtapi/v2/file/scan apikey=${VT_API_KEY} file=@LICENSE
+```
+
+*file_rescan*
+```
+http POST https://www.virustotal.com/vtapi/v2/file/rescan apikey==${VT_API_KEY} resource==8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903
+```
+*url_report*
+```
+http GET https://www.virustotal.com/vtapi/v2/url/report apikey==${VT_API_KEY} resource==www.virustotal.com
+```
+*url_scan*
+```
+http POST https://www.virustotal.com/vtapi/v2/url/scan apikey==${VT_API_KEY} url==www.virustotal.com
+```
+*domain_report*
+```
+http GET https://www.virustotal.com/vtapi/v2/domain/report apikey==${VT_API_KEY} domain==www.virustotal.com
+```
+*ip_address_report*
+```
+http GET https://www.virustotal.com/vtapi/v2/ip-address/report apikey==${VT_API_KEY} ip==8.8.8.8
+```
+*put_comments*
+```
+http POST https://www.virustotal.com/vtapi/v2/comments/put apikey==${VT_API_KEY} resource==8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903 comment=="Testing httpie"
 ```
