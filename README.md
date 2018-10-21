@@ -1,3 +1,19 @@
+
+<!-- TOC -->
+
+- [vtsdk](#vtsdk)
+        - [API Key](#api-key)
+        - [Installation](#installation)
+        - [Configuration](#configuration)
+    - [vt.py](#vtpy)
+        - [Prerrequisites](#prerrequisites)
+        - [Usage](#usage)
+    - [vt.sh](#vtsh)
+        - [Prerrequisites](#prerrequisites-1)
+        - [Usage](#usage-1)
+
+<!-- /TOC -->
+
 # vtsdk
 Virus Total API SDK in Python and in bash
 
