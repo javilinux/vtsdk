@@ -1,15 +1,17 @@
 # vtsdk
-Virus Total API SDK in Python
+Virus Total API SDK in Python and in bash
 
 ### API Key
 - For the apikey you just have to [register](https://www.virustotal.com/en/#signup) in VirusTotal Community (top right hand side of VirusTotal). Once registered, sign in into your account and you will find your public API in the corresponding menu item under your user name.
 
 ### Installation
 
-Clone the repo or just get the vt.py script
+Clone the repo or just get the vt.py/vt.sh file
 
 ### Configuration
 - Put your key inside a file called *apikey.txt* in the same directory.
+
+## vt.py
 
 ### Prerrequisites
 
@@ -48,4 +50,31 @@ optional arguments:
 For instance:
 ```
 ./vt.py -c url_report -r www.virustotal.com
+```
+
+## vt.sh
+
+### Prerrequisites
+
+It requires [httpie](https://httpie.org/) , in Fedora just install with:
+
+```
+dnf install httpie
+```
+
+### Usage
+
+In this case there is no interactive version, so it requires the command and the resource:
+
+```
+chmod +x vt.sh
+./vt.sh $command $resource [$comment]
+```
+
+Where command is one of this: filereport filescan filerescan urlreport urlscan domainreport ipaddressreport putcomments
+And for putcomments you have to add an extra argument
+
+For instance:
+```
+./vt.sh ipaddressreport 8.8.8.8
 ```
