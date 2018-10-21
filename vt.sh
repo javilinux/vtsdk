@@ -5,7 +5,7 @@ usagemsg()
 {
 	echo "Usage: vt.sh \$command \$resource [\$comment]"
 	echo "Where command is one of this: ${commands_list[*]}"
-	echo "And for put_comment you have to add an extra argument"
+	echo "And for putcomments you have to add an extra argument"
 }
 
 checkcommand()
