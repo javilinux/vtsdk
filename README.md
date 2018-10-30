@@ -1,21 +1,3 @@
-
-<!-- TOC -->
-
-- [vtsdk](#vtsdk)
-        - [API Key](#api-key)
-        - [Installation](#installation)
-        - [Configuration](#configuration)
-    - [vt.py](#vtpy)
-        - [Prerrequisites](#prerrequisites)
-        - [Usage](#usage)
-    - [vt.sh](#vtsh)
-        - [Prerrequisites](#prerrequisites-1)
-        - [Usage](#usage-1)
-    - [httpie](#httpie)
-        - [Prerrequisites](#prerrequisites-2)
-
-<!-- /TOC -->
-
 # vtsdk
 
 [VirusTotal](https://www.virustotatl.com) is a free service that analyzes suspicious files and URLs and facilitates the quick detection of viruses, worms, trojans, and all kinds of malware. 
