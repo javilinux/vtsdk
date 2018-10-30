@@ -17,7 +17,13 @@
 <!-- /TOC -->
 
 # vtsdk
-Virus Total API SDK in Python and in bash
+
+[VirusTotal](https://www.virustotatl.com) is a free service that analyzes suspicious files and URLs and facilitates the quick detection of viruses, worms, trojans, and all kinds of malware. 
+
+This repo is just an example of how to use it, in three different ways:
+1. Using a Python script
+2. Using a Bash script with [httpie](https://httpie.org/)
+3. Using [httpie](https://httpie.org/) directly
 
 ### API Key
 - For the apikey you just have to [register](https://www.virustotal.com/en/#signup) in VirusTotal Community (top right hand side of VirusTotal). Once registered, sign in into your account and you will find your public API in the corresponding menu item under your user name.
